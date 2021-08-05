@@ -1,0 +1,425 @@
+@font-face {
+  font-family: Montserrat;
+  font-weight: 500;
+  src: url("materials/fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-weight: 100;
+  src: url("materials/fonts/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  font-weight: 900;
+  src: url("materials/fonts/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: Caveat;
+  src: url("materials/fonts/Caveat-Regular.ttf")
+}
+
+body {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font: 100 20px Montserrat;
+  color: white;
+  background: linear-gradient(45deg, #e3faff, #f7f2ff);
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+header {
+  display: flex;
+  position: relative;
+  width: 100%; height: 100vh;
+  z-index: 2;
+  overflow: hidden;
+}
+header .header-left {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  background: 50% 50% / cover url("materials/images/coffee-header.jpg");
+}
+header .header-right {
+  width: 30%;
+  min-width: 320px;
+  height: 100%;
+  background: #130c09;
+  flex-direction: column;
+}
+
+header .title-container {
+  position: relative;
+  margin-top: -200px;
+}
+header .title-container span {
+  position: absolute;
+  top: 100%; left: 0;
+  width: 100%;
+  text-align: center;
+  font: 2.2em Caveat;
+}
+
+header .header-right .news-title {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+header .header-right .news-title img {
+  width: 30px; height: 30px;
+  margin-right: 8px;
+  vertical-align: bottom;
+}
+
+header .header-right #newsContainer {
+  width: 100%; height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+header .header-right #newsContainer::-webkit-scrollbar {
+  width: 10px;
+}
+header .header-right #newsContainer::-webkit-scrollbar-thumb {
+  background: #513728;
+}
+
+header .header-right .news {
+  position: relative;
+  padding: 2px 0px;
+  margin: 4px 0px;
+  background: #2a1a14;
+}
+header .header-right .news.visible {
+  background: linear-gradient(90deg, #ffffff, #20140f 80%);
+}
+header .header-right .news .news-in {
+  position: relative;
+  width: 100%; height: 100%;
+  justify-content: start;
+  background: #2a1a14;
+  transition: transform 0.2s, background 0.2s;
+}
+header .header-right .news.visible .news-in {
+  transform: translateX(3px);
+  background: #3c251b;
+}
+header .header-right .news-image-container {
+  position: relative;
+  width: 72px; height: 72px;
+  margin-right: 8px;
+}
+header .header-right .news-image-container img {
+  width: 100%; height: 100%;
+}
+header .header-right .news-image-container .news-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+header .header-right .news-description {
+  line-height: 16px;
+}
+header .header-right .news-date {
+  position: absolute;
+  bottom: 2px; left: 80px;
+  font-size: 14px;
+}
+header .header-right .pointer {
+  position: absolute;
+  width: 72px; height: 72px;
+  left: -15px; top: 2px;
+  transform: translateX(-25%) scale(-0.9, 0.9);
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+header .header-right .news.visible .pointer {
+  opacity: 1;
+  transform: scaleX(-1);
+}
+header .header-right .ornament {
+  width: 90%;
+  margin: 5px;
+}
+.ornament.mirrored {
+  transform: scaleY(-1);
+}
+
+header #newsFull {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  max-height: 30%;
+  background: #130c09aa;
+  justify-content: start;
+}
+header #newsFull #newsFullImage {
+  width: 200px; height: 200px;
+  min-width: 200px;
+}
+header #newsFull #newsFullText {
+  padding: 20px;
+}
+header #newsFull #newsFullText h3 {
+  margin-top: 0px;
+}
+
+.main {
+  width: 100%;
+  height: 3000px;
+  position: relative;
+  z-index: 1;
+}
+.main #backgrounds {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #130c09;
+  z-index: 0;
+}
+.main #backgrounds .background {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 0.666s;
+}
+.main #backgrounds .background.visible {
+  opacity: 1;
+}
+.main #backgrounds .background.bg1 {
+  background: 50% 50% / cover url(materials/images/img1.jpg);
+}
+.main #backgrounds .background.bg2 {
+  background: 50% 50% / cover url(materials/images/img2.jpg);
+}
+.main #backgrounds .background.bg3 {
+  background: 50% 50% / cover url(materials/images/img3.jpg);
+}
+.main section {
+  width: 100%; height: 100vh;
+  position: relative;
+}
+.main section.about {
+  background: linear-gradient(90deg, #130c09ff, transparent, #130c09ff);
+}
+
+.main section .title {
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+}
+.main section .title img {
+  width: 220px;
+}
+.main section .title span {
+  font-weight: 900;
+  padding: 0px 10px;
+  font-size: 28px;
+  white-space: nowrap;
+}
+
+.main section.about.us .images {
+  position: absolute;
+  top: 50%; right: 10%;
+  flex-direction: column;
+  transform: translateY(-50%);
+}
+.main section.about.us .images .img * {
+  border: 7px solid white;
+  box-shadow: 3px 3px 16px 4px black;
+}
+.main section.about.us .images .img.i1 {transform: rotate(3deg); z-index: 3;}
+.main section.about.us .images .img.i1 * {
+  background: 50% 50% / cover url("materials/images/cafe-outdoor.jpg");
+  width: 360px; height: 180px;
+}
+.main section.about.us .images .img.i2 {transform: translateY(10px) rotate(7deg); z-index: 2;}
+.main section.about.us .images .img.i2 * {
+  background: 50% 50% / cover url("materials/images/coffee-image1.jpg");
+  width: 172px; height: 172px;
+}
+.main section.about.us .images .img.i3 {transform: translateY(-10px) rotate(-12deg); z-index: 1;}
+.main section.about.us .images .img.i3 * {
+  background: 50% 50% / cover url("materials/images/muffin-image.jpg");
+  width: 172px; height: 172px;
+}
+.main section.about.us .images .img.i4 {transform: translateY(-10px) rotate(-2deg); z-index: 0;}
+.main section.about.us .images .img.i4 * {
+  background: 50% 50% / cover url("materials/images/coffee-image2.jpg");
+  width: 360px; height: 180px;
+}
+.main section.about.us .tagline {
+  font: 900 35px Caveat;
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translate(50%) rotate(78deg);
+}
+
+.main section.about.us .description, .main section.location .description {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36%;
+}
+.main section.about.us .description img {
+  display: block;
+  margin-bottom: 1em;
+  width: 14em;
+}
+
+.main section.about.menu .recommended-container {
+  position: absolute;
+  top: 50%; left: 10%;
+  transform: translateY(-50%);
+}
+.main section.about.menu .recommended {
+  position: relative;
+  flex-direction: column;
+  background: #130c09;
+  max-width: 400px;
+  box-shadow: 4px 4px 24px -10px black;
+  font: 32px Caveat;
+}
+.main section.about.menu .recommended .image {
+  max-width: 400px;
+}
+.main section.about.menu .recommended .description {
+  padding: 12px;
+  line-height: 1em;
+}
+.main section.about.menu .recommended .description h3 {
+  width: 100%;
+  margin: 0px 0px 10px 0px;
+  text-align: center;
+}
+.main section.about.menu .recommended .price {
+  width: 100%;
+  text-align: center;
+  background: #e08a0b;
+  font-size: 1.2em;
+  font-weight: 900;
+}
+.main section.about.menu .recommended:before, .main section.about.menu .recommended:after {
+  content: "";
+  position: absolute;
+  background: 50% 50% / contain url("materials/icons/ornament3.svg");
+  width: 180px; height: 180px;
+  pointer-events: none;
+}
+.main section.about.menu .recommended:before {
+  top: -16px; left: -16px;
+  transform: rotate(-90deg);
+}
+.main section.about.menu .recommended:after {
+  bottom: -16px; right: -16px;
+  transform: rotate(90deg);
+}
+
+.main section.about.menu .menu-container {
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+  font: 30px Caveat;
+  line-height: 1em;
+}
+.main section.about.menu .menu-container .ornament, .main section.about.menu .menu-container .dishes {
+  background: #130c09de;
+  padding: 8px;
+  margin: 2px 0px;
+}
+.main section.about.menu .menu-container .dishes {
+  padding: 0;
+  justify-content: space-between;
+  width: 100%;
+}
+.main section.about.menu .menu-container .dishes .description {
+  padding: 8px 0px;
+  margin-left: 16px;
+}
+.main section.about.menu .menu-container .dishes h3 {
+  margin: 0;
+}
+.main section.about.menu .menu-container .dishes .image {
+  width: 76px; height: 76px;
+}
+
+.main section.location #map {
+  position: absolute;
+  top: 50%; right: 5%;
+  transform: translateY(-50%);
+  width: 500px; height: 360px;
+  //border: 10px solid white;
+  box-shadow: 3px 3px 28px -10px black;
+}
+
+.main section.location .description {
+  font-size: 28px;
+}
+.main section.location .description span {
+  display: block;
+  margin: 20% 0px;
+}
+.main section.location .description .address a {
+  background: #e08a0b;
+  padding: 2px 6px;
+}
+.main section.location .description .contacts ul {
+  list-style: circle;
+}
+
+.main section.location footer {
+  position: absolute;
+  bottom: 0; left: 0;
+  padding: 10px;
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+.main section.location footer .separator {
+  margin: 0px 10px;
+}
+
+#navigation {
+  position: fixed;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.33s;
+}
+#navigation.visible {
+  opacity: 1;
+  pointer-events: initial;
+}
+#navigation label {
+  line-height: 0;
+}
+#navigation label input {
+  width: 0.1px; height: 0.1px;
+  opacity: 0;
+  margin: 0;
+}
+#navigation label div {
+  width: 14px; height: 14px;
+  background: radial-gradient(transparent, #ffffff80);
+  border: 3px solid white;
+  margin: 5px;
+  border-radius: 50%;
+}
+#navigation label input:checked + div {
+  background: white;
+  box-shadow: 0px 0px 10px 0px white;
+}

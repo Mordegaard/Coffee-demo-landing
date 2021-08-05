@@ -1,0 +1,191 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>Coffee break - Завжди знайдеться час на каву</title>
+    <meta name="author" content="Mordegaard">
+    <link rel="stylesheet" href="styles.css?v=1.0">
+    <script>
+    function initGoogleMap() {
+      const uluru = { lat: 49.55888713984439, lng: 25.588418504064663 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: uluru,
+        mapId: "fc5bd9844e2e6ac2",
+        disableDefaultUI: true,
+      });
+      const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+      });
+    }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <section class="header-left flexed">
+        <div class="title-container">
+          <img src="materials/icons/logo.svg"/>
+          <span>Завжди знайдеться час на каву</span>
+        </div>
+        <div id="newsFull" class="flexed">
+          <div id="newsFullImage" style="background: 50% 50% / cover url(materials/images/news1.jpg)"></div>
+          <div id="newsFullText">
+            <h3>День без цукру</h3>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+          </div>
+        </div>
+      </section>
+      <section class="header-right flexed">
+        <span class="news-title"><img src="materials/icons/newspaper.svg"/>Новини кав'ярні</span>
+        <img class="ornament" src="materials/icons/ornament2.svg">
+        <div id="newsContainer">
+        </div>
+        <img class="ornament mirrored" src="materials/icons/ornament2.svg">
+      </section>
+    </header>
+
+    <div class="main">
+      <div id="backgrounds">
+        <div class="background bg1"></div>
+        <div class="background bg2"></div>
+        <div class="background bg3"></div>
+      </div>
+      <section class="about us">
+        <div class="title">
+          <animated-div
+            animation-type="increasing-block"
+            animation-delay="100"
+            animation-trigger="onscroll"
+            class="flexed">
+            <img src="materials/icons/ornament1-1.svg">
+            <span>Про нас</span>
+            <img src="materials/icons/ornament1-2.svg">
+          </animated-div>
+        </div>
+        <animated-div class="description" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="100">
+          <img src="materials/icons/logo.svg">
+          <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/><br/>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        </animated-div>
+        <div class="images flexed">
+          <div class="img i1"><animated-div animation-type="falling-block" animation-trigger="onscroll" animation-delay="600"></animated-div></div>
+          <div style="display: flex;">
+            <div class="img i2"><animated-div animation-type="falling-block" animation-trigger="onscroll" animation-delay="400"></animated-div></div>
+            <div class="img i3"><animated-div animation-type="falling-block" animation-trigger="onscroll" animation-delay="200"></animated-div></div>
+          </div>
+          <div class="img i4"><animated-div animation-type="falling-block" animation-trigger="onscroll"></animated-div></div>
+        </div>
+        <animated-div class="tagline" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="100">❤ Створюйте спогади разом з нами</animated-div>
+      </section>
+      <section class="about menu">
+        <div class="title">
+          <animated-div
+            animation-type="increasing-block"
+            animation-delay="100"
+            animation-trigger="onscroll"
+            class="flexed">
+            <img src="materials/icons/ornament1-1.svg">
+            <span>А що в меню?</span>
+            <img src="materials/icons/ornament1-2.svg">
+          </animated-div>
+        </div>
+        <div class="recommended-container">
+          <animated-div class="recommended flexed" animation-type="falling-block" animation-trigger="onscroll" animation-delay="200">
+            <div class="price"><img src="materials/icons/star.svg" style="height: 1.5ch;">Рекомендуємо</div>
+            <img class="image" src="materials/images/lemon-pie.jpg">
+            <div class="description">
+              <h3>Лимонний пиріг</h3>
+              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</span>
+            </div>
+            <div class="price">від 42грн</div>
+          </animated-div>
+        </div>
+        <animated-div class="menu-container flexed" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="200">
+          <img class="ornament" src="materials/icons/ornament2.svg">
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Кавові напої:</h3>
+              <span>Латте...</span>
+            </div>
+            <div class="image" style="background:#ff0000;"></div>
+          </div>
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Інші напої:</h3>
+              <span>Чорний чай...</span>
+            </div>
+            <div class="image" style="background:#ff8000;"></div>
+          </div>
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Десерти:</h3>
+              <span>Полуничне желе...</span>
+            </div>
+            <div class="image" style="background:#ffff00;"></div>
+          </div>
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Літні салати:</h3>
+              <span>Lorem ipsum...</span>
+            </div>
+            <div class="image" style="background:#80ff00;"></div>
+          </div>
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Гарячі страви:</h3>
+              <span>Dolor sit...</span>
+            </div>
+            <div class="image" style="background:#00ff00;"></div>
+          </div>
+          <div class="dishes flexed">
+            <div class="description">
+              <h3>Інше:</h3>
+              <span>Duis aute...</span>
+            </div>
+            <div class="image" style="background:#00ff80;"></div>
+          </div>
+          <img class="ornament mirrored" src="materials/icons/ornament2.svg">
+        </animated-div>
+      </section>
+      <section class="about location">
+        <div class="title">
+          <animated-div
+            animation-type="increasing-block"
+            animation-delay="100"
+            animation-trigger="onscroll"
+            class="flexed">
+            <img src="materials/icons/ornament1-1.svg">
+            <span>Де нас найти</span>
+            <img src="materials/icons/ornament1-2.svg">
+          </animated-div>
+        </div>
+        <animated-div id="map" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="500"></animated-div>
+        <animated-div class="description" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="100">
+          <span class="address">
+            Наша адреса:<br>
+            <a href="https://www.google.com/maps?ll=49.558887,25.588419&z=15&t=m&hl=ru&gl=US&mapclient=apiv3" target="_blank">м. Lorem, вул. Ipsum Dolor, 10</a></span>
+          <span class="contacts">
+            Наші контакти:
+            <ul>
+              <a href="tel:+00000000000"><li>+00(00)000-00-00</li></a>
+              <a href="tel:+12345678900"><li>+12(34)567-89-00</li></a>
+              <a href="mailto:lorem@ipsum.dolor"><li>lorem@ipsum.dolor</li></a>
+            </ul>
+          </span>
+        </animated-div>
+        <footer class="flexed">
+          <a href="https://ru.freepik.com/vectors/frame">Дякую freepik за векторний декор</a>
+          <span class="separator">•</span>
+          <a href="https://mrdgrd.blogspot.com">Зверстав Mordegaard</a>
+          <span class="separator">•</span>
+          <span>Не являється рекламою справжньої компанії. Любі збіги вважати випадковими</span>
+        </footer>
+      </section>
+      <div id="navigation" class="flexed"></div>
+    </div>
+
+    <script src="MRDGRD-lib.js"></script>
+    <script src="script.js" type="module"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzruLXvcGeFyk0JM1EirB86hgpoTrynBA&callback=initGoogleMap&libraries=&v=weekly" async></script>
+  </body>
+</html>
