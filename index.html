@@ -1,26 +1,32 @@
 <!doctype html>
   <head>
     <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <title>Coffee break - Завжди знайдеться час на каву</title>
     <meta name="author" content="Mordegaard">
     <link rel="stylesheet" href="styles.css?v=1.0">
     <script>
+    function gm_authFailure() {
+      let err = document.createElement("span");
+      err.innerText = "Вибачте, але карта не може бути завантажена з цього домена";
+      id("map").append(err);
+      id("map").classList.add("error");
+    }
     function initGoogleMap() {
-      const uluru = { lat: 49.55888713984439, lng: 25.588418504064663 };
+      const coords = { lat: 49.55888713984439, lng: 25.588418504064663 };
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
-        center: uluru,
+        center: coords,
         mapId: "fc5bd9844e2e6ac2",
         disableDefaultUI: true,
       });
       const marker = new google.maps.Marker({
-        position: uluru,
+        position: coords,
         map: map,
       });
     }
     </script>
   </head>
-
   <body>
     <header>
       <section class="header-left flexed">
@@ -161,27 +167,42 @@
         </div>
         <animated-div id="map" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="500"></animated-div>
         <animated-div class="description" animation-type="emergent-block" animation-trigger="onscroll" animation-delay="100">
-          <span class="address">
+          <div class="address">
             Наша адреса:<br>
-            <a href="https://www.google.com/maps?ll=49.558887,25.588419&z=15&t=m&hl=ru&gl=US&mapclient=apiv3" target="_blank">м. Lorem, вул. Ipsum Dolor, 10</a></span>
-          <span class="contacts">
+            <a href="https://www.google.com/maps?ll=49.558887,25.588419&z=15&t=m&hl=ru&gl=US&mapclient=apiv3" target="_blank"><span><img src="materials/icons/map-marker.svg">м. Lorem, вул. Ipsum Dolor, 10</span></a>
+          </div>
+          <div class="contacts">
             Наші контакти:
             <ul>
-              <a href="tel:+00000000000"><li>+00(00)000-00-00</li></a>
-              <a href="tel:+12345678900"><li>+12(34)567-89-00</li></a>
-              <a href="mailto:lorem@ipsum.dolor"><li>lorem@ipsum.dolor</li></a>
+              <a href="tel:+00000000000"><li><img src="materials/icons/mobile.svg">+00(00)000-00-00</li></a>
+              <a href="tel:+12345678900"><li><img src="materials/icons/mobile.svg">+12(34)567-89-00</li></a>
+              <a href="mailto:lorem@ipsum.dolor"><li><img src="materials/icons/envelope.svg">lorem@ipsum.dolor</li></a>
             </ul>
-          </span>
+          </div>
         </animated-div>
         <footer class="flexed">
-          <a href="https://ru.freepik.com/vectors/frame">Дякую freepik за векторний декор</a>
+          <span>Дякую <a href="https://ru.freepik.com/vectors/frame">freepik</a> та <a href="https://www.vecteezy.com/free-vector/nature">Vecteezy</a> за векторний декор</span>
           <span class="separator">•</span>
           <a href="https://mrdgrd.blogspot.com">Зверстав Mordegaard</a>
           <span class="separator">•</span>
           <span>Не являється рекламою справжньої компанії. Любі збіги вважати випадковими</span>
         </footer>
       </section>
-      <div id="navigation" class="flexed"></div>
+    </div>
+
+    <div id="navigation" class="flexed"></div>
+
+    <div id="loading" class="flexed">
+      <div id="coffeeIcon">
+        <div class="steam">
+          <img class="steam1" src="materials/icons/steam1.svg">
+          <img class="steam2" src="materials/icons/steam2.svg">
+          <img class="steam3" src="materials/icons/steam3.svg">
+        </div>
+        <img class="cup" src="materials/icons/coffee-steamless.svg">
+      </div>
+      <span>Зачекайте, ми готуємо каву...</span>
+      <div id="loadingBar"><div></div></div>
     </div>
 
     <script src="MRDGRD-lib.js"></script>

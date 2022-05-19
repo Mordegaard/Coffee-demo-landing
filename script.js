@@ -1,9 +1,25 @@
+window.addEventListener("load", function() {
+  document.body.classList.add("loaded");
+  setTimeout(()=>id("loading").style.display = "none", 1000);
+});
+
 var w = window.innerWidth, h = window.innerHeight;
 const scroll = {
   current: Math.floor(window.scrollY/h),
   possible: true,
   delay: 666,
   max: 4,
+}
+
+var nonScrollableElements = [id("newsContainer"), id("map"), id("newsFull")];
+
+function checkScrolling(target) {
+  for (let i in nonScrollableElements) {
+    if (nonScrollableElements[i].contains(target)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 class News {
@@ -19,31 +35,31 @@ var newsArray = [
            "14.07.2021"),
   new News("Новина 2",
            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-           `https://picsum.photos/seed/${+ new Date()}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${1}`,
            "09.07.2021"),
   new News("Новина 3",
            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
-           `https://picsum.photos/seed/${+ new Date() + 1}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${2}`,
            "02.06.2021"),
   new News("Новина 4",
            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-           `https://picsum.photos/seed/${+ new Date() + 2}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${3}`,
            "01.06.2021"),
   new News("Новина 5",
            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-           `https://picsum.photos/seed/${+ new Date() + 3}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${4}`,
            "25.05.2021"),
   new News("Новина 6",
            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
-           `https://picsum.photos/seed/${+ new Date() + 4}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${5}`,
            "21.05.2021"),
   new News("Новина 7",
            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-           `https://picsum.photos/seed/${+ new Date() + 5}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${6}`,
            "14.05.2021"),
   new News("Новина 8",
            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-           `https://picsum.photos/seed/${+ new Date() + 6}/400/400`,
+           `https://loremflickr.com/320/320/coffee?r=${7}`,
            "02.05.2021"),
 ];
 
@@ -53,12 +69,12 @@ for (let i=0; i<scroll.max; i++) {
   let label = document.createElement("label");
   label.innerHTML='<input type="radio" name="navigation"><div></div>';
   label.addEventListener("click", function(){
-    if (!i) id("navigation").changeVisible(false);
     scroll.current = i;
     scrollWindow(scroll.current);
   });
   id("navigation").append(label);
 }
+id("navigation").tag("input")[0].checked = true;
 
 function scrollWindow(i) {
   window.scrollTo({top: i*h, behavior: "smooth"});
@@ -70,21 +86,55 @@ function scrollWindow(i) {
 
 if (scroll.current) {
   name("navigation")[scroll.current].checked = true;
-  id("navigation").changeVisible(true);
 }
 
-document.addEventListener("mousewheel", function(e) {
-  if (!(id("newsContainer").contains(e.target) || id("map").contains(e.target))) {
+var touchstartY = 0;
+var touchendY = 0;
+
+function handleGesture(target) {
+  if (checkScrolling(target)) {
+    if (touchendY > touchstartY) {
+      console.log('swiped down!');
+      if (scroll.current > 0) {
+        --scroll.current;
+        scrollWindow(scroll.current);
+        name("navigation")[scroll.current].checked = true;
+      }
+    } else if (touchendY < touchstartY) {
+      console.log('swiped up!');
+      if (scroll.current*h < document.body.scrollHeight && scroll.current < scroll.max-1) {
+        scroll.current++;
+        scrollWindow(scroll.current);
+        name("navigation")[scroll.current].checked = true;
+      }
+    }
+  }
+}
+
+document.body.addEventListener('touchstart', e => {
+  touchstartY = e.changedTouches[0].screenY;
+})
+
+document.body.addEventListener('touchend', e => {
+  console.log(e);
+  touchendY = e.changedTouches[0].screenY;
+  handleGesture(e.path[0]);
+})
+
+document.addEventListener("wheel", function(e) {
+  if (checkScrolling(e.target)) {
     if (scroll.possible) {
       if (e.deltaY > 0) {
-          if (scroll.current*h < document.body.scrollHeight && scroll.current < scroll.max-1) scroll.current++;
-          id("navigation").changeVisible(true);
+          if (scroll.current*h < document.body.scrollHeight && scroll.current < scroll.max-1) {
+            scroll.current++;
+            scroll.possible = false;
+          }
       } else if (scroll.current > 0) {
-        if (!--scroll.current) id("navigation").changeVisible(false);
+        --scroll.current;
+        scroll.possible = false;
       }
       scrollWindow(scroll.current);
       name("navigation")[scroll.current].checked = true;
-      scroll.possible = false;
       setTimeout(()=>scroll.possible=true, scroll.delay);
     }
   }
@@ -117,4 +167,5 @@ cl("news")[0].changeVisible(true);
 
 window.addEventListener("resize", function() {
   w = window.innerWidth; h = window.innerHeight;
+  scrollWindow(scroll.current);
 });
